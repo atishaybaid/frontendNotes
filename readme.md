@@ -1,4 +1,4 @@
-#Webpack Notes
+# Webpack Notes
 
 * Webpack is a module bundler->Main purpose of webpack is to  create a single file to be fetched to browser
 
@@ -8,18 +8,18 @@ of different kind of files.
 
 
 
-#####Build
+##### Build
 `npm install -g webpack`
 
 
-####Run
+#### Run
 We can directly run webpack from  terminal without the need of `webpack.config.js` file.
 `webpack 'srcfile' 'distfile'`
 
 [using webpack form cli](https://github.com/webpack/docs/wiki/cli)
 
 
-#####Using with react
+##### Using with react
 
 1. To compile react (jsx) we will have to use some loaders and presets
     ```
@@ -53,7 +53,7 @@ here **js=babel-loader** just tells webpack to run all js files through babel-lo
 *it is advisable to not use all plugins in production env,as they could increase the  productoin build size* 
 
 
-######Webpackpack.config.js
+###### Webpackpack.config.js
 Alternatively we can create a config file.
 
 sample file
