@@ -94,7 +94,19 @@ here
 * **module** contains list of all the loaders which will be executed if regex (`test`) for file name pases,  
 
 
+#### Dependency Resolution
+**How Does Webpack resolve Dependencies?**
+Webapck loaders are build on Nodes.js,and to resolve module Dependencies
+i.e what happens when there is some `import` in file,
+`import foo from 'path/to/module'`
 
+Webpack uses a [enhanced resolver](https://github.com/webpack/enhanced-resolve).
+
+Which Uses Node.js `require` functions to bring the modules.
+It also cache the files,so that if a file is requested agin it bring the cached file.
+
+
+[Main Article](https://webpack.js.org/concepts/module-resolution/)
 
 
 
