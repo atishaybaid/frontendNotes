@@ -292,6 +292,99 @@ new Promise(function(resolve, reject) {
 .catch(function(e) { console.log('catch: ', e); });
 
 
+#### `promise.all` ->it takes array of promises and fires one callback once they are resolved.
+A simple scenerio is of JavaScript loaders,here we want to get notified when all of them are resolved.
+
+
+````
+var request1 = fetch('/users.json');
+var request2 = fetch('/articles.json');
+
+Promise.all([request1, request2]).then(function(results) {
+    // Both promises done!
+});
+
+
+````
+
+
+The return value is iterable containing value of all resolved promises.
+
+
+````
+var p1 = Promise.resolve(3);
+var p2 = 1337;
+var p3 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 100, 'foo');
+}); 
+
+Promise.all([p1, p2, p3]).then(values => { 
+  console.log(values); // [3, 1337, "foo"] 
+});
+
+````
+
+
+ Promise.all is rejected if any of the promises is rejected
+
+````
+var p1 = new Promise((resolve, reject) => { 
+  setTimeout(resolve, 1000, 'one'); 
+}); 
+var p2 = new Promise((resolve, reject) => { 
+  setTimeout(resolve, 2000, 'two'); 
+});
+var p3 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 3000, 'three');
+});
+var p4 = new Promise((resolve, reject) => {
+  setTimeout(resolve, 4000, 'four');
+});
+var p5 = new Promise((resolve, reject) => {
+  reject('reject');
+});
+
+Promise.all([p1, p2, p3, p4, p5]).then(values => { 
+  console.log(values);
+}, reason => {
+  console.log(reason)
+});
+
+//From console:
+//"reject"
+
+//You can also use .catch
+Promise.all([p1, p2, p3, p4, p5]).then(values => { 
+  console.log(values);
+}).catch(reason => { 
+  console.log(reason)
+});
+````
+
+
+
+##### Promise.race ->`Promise.race` triggers as soon as any promise in the array is resolved or rejected
+
+
+````
+var req1 = new Promise(function(resolve, reject) { 
+    // A mock async action using setTimeout
+    setTimeout(function() { resolve('First!'); }, 8000);
+});
+var req2 = new Promise(function(resolve, reject) { 
+    // A mock async action using setTimeout
+    setTimeout(function() { resolve('Second!'); }, 3000);
+});
+Promise.race([req1, req2]).then(function(one) {
+    console.log('Then: ', one);
+}).catch(function(one, two) {
+    console.log('Catch: ', one);
+});
+
+// From the console:
+// Then: Second!
+
+````
 
 
 
@@ -302,15 +395,15 @@ new Promise(function(resolve, reject) {
 
 
 
-A api which  solves inversion of cnotrol and callback problems.
-refer to keyls ext4 example an implemetation of promise.all
-```promise.race```
 
-1.Genetators
+
+
+
+1.Genetators->A special kind of function,of which we can stop the execution
 
 In JavaScript normal function runs Sequencely i.e we can't stop the execution of 
-function in between. This this is possible with JavaScript Genetators.
-Genetators can pause execution of any expression,in between.
+function in between. This  is possible with JavaScript Genetators.
+Genetators can be paused  using the special `yield` keyword.
 
 
 
