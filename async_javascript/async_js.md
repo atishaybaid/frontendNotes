@@ -425,12 +425,160 @@ it.next();
 ```
 
 
-promise in a generator
 
-async await
+#### 2-way data passing->we can set the data from outside of function
+
+
+###### Passing Argumaents to generator
+
+````
+function* logGenerator() {
+  console.log(yield);
+  console.log(yield);
+  console.log(yield);
+}
+
+var gen = logGenerator();
+
+// the first call of next executes from the start of the function
+// until the first yield statement
+gen.next(); 
+gen.next('pretzel'); // pretzel
+gen.next('california'); // california
+gen.next('mayonnaise'); // mayonnaise
+`
+
+````
+
+*Generators are not constructable*
+
+function* f() {}
+var obj = new f;
+
+
+
+
+
+
+##### Asnc with Generators
+
+````
+function request(url) {
+    // this is where we're hiding the asynchronicity,
+    // away from the main code of our generator
+    // `it.next(..)` is the generator's iterator-resume
+    // call
+    makeAjaxCall( url, function(response){
+        it.next( response );
+    } );
+    // Note: nothing returned here!
+}
+
+function *main() {
+    var result1 = yield request( "http://some.url.1" );
+    var data = JSON.parse( result1 );
+
+    var result2 = yield request( "http://some.url.2?id=" + data.id );
+    var resp = JSON.parse( result2 );
+    console.log( "The value you asked for: " + resp.value );
+}
+
+var it = main();
+it.next(); // get it all started
+
+````
+
+
+
+#### Prmoises with Generators
+
+
+````
+function request(url) {
+    // Note: returning a promise now!
+    return new Promise( function(resolve,reject){
+        makeAjaxCall( url, resolve );
+    } );
+}
+
+
+function runGenerator(g) {
+    var it = g(), ret;
+
+    // asynchronously iterate over generator
+    (function iterate(val){
+        ret = it.next( val );
+
+        if (!ret.done) {
+            // poor man's "is it a promise?" test
+            if ("then" in ret.value) {
+                // wait on the promise
+                ret.value.then( iterate );
+            }
+            // immediate value: just send right back in
+            else {
+                // avoid synchronous recursion
+                setTimeout( function(){
+                    iterate( ret.value );
+                }, 0 );
+            }
+        }
+    })();
+}
+
+
+runGenerator( function *main(){
+    var result1 = yield request( "http://some.url.1" );
+    var data = JSON.parse( result1 );
+
+    var result2 = yield request( "http://some.url.2?id=" + data.id );
+    var resp = JSON.parse( result2 );
+    console.log( "The value you asked for: " + resp.value );
+} );
+
+````
+
+
+
+
+##### ES7 Asnc
+
+
+
+async await->it is kind of replacment for of the runGenerator utility that is discussed above.
+
+
+
+````
+
+
+async function main() {
+    var result1 = await request( "http://some.url.1" );
+    var data = JSON.parse( result1 );
+
+    var result2 = await request( "http://some.url.2?id=" + data.id );
+    var resp = JSON.parse( result2 );
+    console.log( "The value you asked for: " + resp.value );
+}
+
+````
+
+
+here instead of yield we use await,rest handling it do automatically
+
 
 
 button clicking of promises
+
+
+
+-----------
+sources
+https://davidwalsh.name/async-generators
+https://github.com/getify/You-Dont-Know-JS/tree/master/async%20%26%20performance
+https://medium.com/@benlesh/learning-observable-by-building-observable-d5da57405d87
+
+
 
 
 
