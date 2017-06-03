@@ -35,11 +35,11 @@ be created once and assgned later.
 
 
 
-#### asynchronusity
+# Asynchronous JavaScript
 
 
-1.Event loop
-A event loop is never ending loop which runs the single chunk of programme.he JS engine itself has never done 
+1. **Event loop**
+A event loop is never ending loop which runs the single chunk of programme.The JS engine itself has never done 
 anything more than execute a single chunk of your program at any given moment, when asked to.
 
 so when we do a `setTimeout`,it sets a timer in the execution enviornment(mainly browser or node),and that 
@@ -49,12 +49,12 @@ if there are already other items in the event loop at that moment,the callback w
 
 
 
-1.Parellel vs Async
+2. **Parellel vs Async**
 
  Parellelism is completely different from asynchronusity.
  Parellelism means runnig multiple threads 
  
-1. CallBack
+3. **CallBack**
 
 They are the most commonly used way to achive asynchronusity in JavaScript code,
 * Very Much trust issue->Call back can break anytime,depends upon external service giving responces.
@@ -188,7 +188,7 @@ thunk(function(sum){
     console.log(sum)
 })
 
-
+````
 
 
 
@@ -199,12 +199,12 @@ refer to kyle ex 2
 
 It is value which will produce some result in future.
 
-###### States of promise
-* `pending`: initial state, not fulfilled or rejected.
-* `fulfilled`: meaning that the operation completed successfully.
-* `rejected`: meaning that the operation failed.
+**States of promise**
+* pending: initial state, not fulfilled or rejected.
+* fulfilled: meaning that the operation completed successfully.
+* rejected: meaning that the operation failed.
 
-####### Basic Usage
+**Basic Usage**
 
 ````
 var p = new Promise(function(resolve, reject) {
@@ -577,11 +577,3 @@ sources
 https://davidwalsh.name/async-generators
 https://github.com/getify/You-Dont-Know-JS/tree/master/async%20%26%20performance
 https://medium.com/@benlesh/learning-observable-by-building-observable-d5da57405d87
-
-
-
-
-
-
-
-
