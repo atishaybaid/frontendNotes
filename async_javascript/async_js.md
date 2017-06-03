@@ -195,7 +195,7 @@ thunk(function(sum){
 refer to kyle ex 2
 
 
-1. Promises
+4. **Promises**
 
 It is value which will produce some result in future.
 
@@ -399,7 +399,7 @@ Promise.race([req1, req2]).then(function(one) {
 
 
 
-1.Genetators->A special kind of function,of which we can stop the execution
+5. **Genetators**->A special kind of function,of which we can stop the execution
 
 In JavaScript normal function runs Sequencely i.e we can't stop the execution of 
 function in between. This  is possible with JavaScript Genetators.
