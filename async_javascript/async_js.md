@@ -225,6 +225,8 @@ p.then(function() {
     /* error :( */
 })
 
+
+````
 Three files example
 
 ````
@@ -284,13 +286,15 @@ p1
 
 #### `catch` ->Executed when a promise is rejected
 
+
+````
 new Promise(function(resolve, reject) {
     // A mock async action using setTimeout
     setTimeout(function() { reject('Done!'); }, 3000);
 })
 .then(function(e) { console.log('done', e); })
 .catch(function(e) { console.log('catch: ', e); });
-
+````
 
 #### `promise.all` ->it takes array of promises and fires one callback once they are resolved.
 A simple scenerio is of JavaScript loaders,here we want to get notified when all of them are resolved.
