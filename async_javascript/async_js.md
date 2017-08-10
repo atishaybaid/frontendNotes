@@ -35,11 +35,11 @@ be created once and assgned later.
 
 
 
-#### asynchronusity
+# Asynchronous JavaScript
 
 
-1.Event loop
-A event loop is never ending loop which runs the single chunk of programme.he JS engine itself has never done 
+1. **Event loop**
+A event loop is never ending loop which runs the single chunk of programme.The JS engine itself has never done 
 anything more than execute a single chunk of your program at any given moment, when asked to.
 
 so when we do a `setTimeout`,it sets a timer in the execution enviornment(mainly browser or node),and that 
@@ -49,12 +49,12 @@ if there are already other items in the event loop at that moment,the callback w
 
 
 
-1.Parellel vs Async
+2. **Parellel vs Async**
 
  Parellelism is completely different from asynchronusity.
  Parellelism means runnig multiple threads 
  
-1. CallBack
+3. **CallBack**
 
 They are the most commonly used way to achive asynchronusity in JavaScript code,
 * Very Much trust issue->Call back can break anytime,depends upon external service giving responces.
@@ -188,23 +188,23 @@ thunk(function(sum){
     console.log(sum)
 })
 
-
+````
 
 
 
 refer to kyle ex 2
 
 
-1. Promises
+4. **Promises**
 
 It is value which will produce some result in future.
 
-###### States of promise
-* `pending`: initial state, not fulfilled or rejected.
-* `fulfilled`: meaning that the operation completed successfully.
-* `rejected`: meaning that the operation failed.
+**States of promise**
+* pending: initial state, not fulfilled or rejected.
+* fulfilled: meaning that the operation completed successfully.
+* rejected: meaning that the operation failed.
 
-####### Basic Usage
+**Basic Usage**
 
 ````
 var p = new Promise(function(resolve, reject) {
@@ -225,6 +225,8 @@ p.then(function() {
     /* error :( */
 })
 
+
+````
 Three files example
 
 ````
@@ -284,13 +286,15 @@ p1
 
 #### `catch` ->Executed when a promise is rejected
 
+
+````
 new Promise(function(resolve, reject) {
     // A mock async action using setTimeout
     setTimeout(function() { reject('Done!'); }, 3000);
 })
 .then(function(e) { console.log('done', e); })
 .catch(function(e) { console.log('catch: ', e); });
-
+````
 
 #### `promise.all` ->it takes array of promises and fires one callback once they are resolved.
 A simple scenerio is of JavaScript loaders,here we want to get notified when all of them are resolved.
@@ -399,7 +403,7 @@ Promise.race([req1, req2]).then(function(one) {
 
 
 
-1.Genetators->A special kind of function,of which we can stop the execution
+5. **Genetators**->A special kind of function,of which we can stop the execution
 
 In JavaScript normal function runs Sequencely i.e we can't stop the execution of 
 function in between. This  is possible with JavaScript Genetators.
@@ -577,11 +581,3 @@ sources
 https://davidwalsh.name/async-generators
 https://github.com/getify/You-Dont-Know-JS/tree/master/async%20%26%20performance
 https://medium.com/@benlesh/learning-observable-by-building-observable-d5da57405d87
-
-
-
-
-
-
-
-
