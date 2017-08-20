@@ -1,10 +1,51 @@
 
-#Browser Router
+# Browser Router(React Route v4)
 
+//Introduction needed
+
+React Router features  dynamic routing,which is different from earlier versions of react-router,and other frameworks
+such as angular,ember supporting static routing.
+
+
+#### Installation
+`npm install --save react-router-dom`
+
+### Dynamic Routing
+
+It allows us to define routes,anywhere inside our react application whereever we need(as your app is rendering, not in a configuration or convention outside of a running app.),earlier with static routing
+we had difine all the routes before the app getting bootstraped.
+
+
+
+### Rendering with React Router
+
+Router components only expect to receive a single child element.
+
+````
+ReactDOM.render(
+  <BrowserRouter>
+    <App/>
+  <BrowserRouter/>,
+  document.getElementById('app'));
+````
+
+To Overcome this limitation we can put our application/routing logic inside app component.
+
+````
+const App = () => (
+  <div>
+    <Header />
+    <Main />
+  </div>
+)
+
+````
+
+//Need more clarification
 #### History
 
 
-Three important types of History browser, hash, and memory.
+Three important types of History i.e  browser, hash, and memory.
 
 
 ````
@@ -35,9 +76,9 @@ The browser maintains a array of Location objects and keeps a pointer to the cur
 For the memory history, these are explicitly defined. For both the browser and hash histories, the array and index is controlled by the browser and cannot be directly accessed
 
 
+//Need more clarificatoin
 
-
-2. Navigation ->IT contains number of methods which makes the router interesting.
+2. Navigation ->It contains number of methods which makes the router interesting.
 
 `history.push({ pathname: '/new-place' })`->Good for link 
 
@@ -59,35 +100,12 @@ A React Router’s router component will subscribe to its history object so that
 
 
 
-#### Router
-Router components only expect to receive a single child element. To work within this limitation,
-
-````
-import { BrowserRouter } from 'react-router-dom'
-ReactDOM.render((
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>
-), docu
-
-````
 
 
 
-````
-const App = () => (
-  <div>
-    <Header />
-    <Main />
-  </div>
-)
 
-````
-
-
-
-#### Routes ->. Main building block of react application,Anywhere that you want to only render something if it matches the location’s pathname, you should create a <Route> element.
-#### Path ->A `<Route>` expects a path prop string that describes the type of pathname that the route matches — for example, <Route path='/roster'/> should match a pathname that begins with /roster[2]. When the current location’s pathname is matched by the path, the route will render a React element. 
+#### Routes ->. Main building block of react application,Anywhere that you want to only render something if it matches the location’s pathname, you should create a <Route> element. ####
+#### Path ->A `<Route>` expects a path prop string that describes the type of pathname that the route matches — for example, <Route path='/roster'/> should match a pathname that begins with /roster[2]. When the current location’s pathname is matched by the path, the route will render a React element. ####
 
 
 ````
@@ -144,3 +162,11 @@ const extraProps = { color: 'red' }
 )}/>
 
 ````
+
+
+
+
+
+
+#### Refs
+1. Offical Docs -> https://reacttraining.com/react-router/web/guides/philosophy
