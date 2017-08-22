@@ -1,7 +1,7 @@
 
 # Browser Router(React Route v4)
 
-//Introduction needed
+
 
 React Router features  dynamic routing,which is different from earlier versions of react-router,and other frameworks
 such as angular,ember supporting static routing.
@@ -85,7 +85,7 @@ For the memory history, these are explicitly defined. For both the browser and h
 `history.replace({ pathname: '/go-here-instead' })` ->Good for redirections.
  
 
-##### Listen ->History uses observer pattern to allow outside code to be notified when the location changes.
+3. Listen ->History uses observer pattern to allow outside code to be notified when the location changes.
 
 
 ````
