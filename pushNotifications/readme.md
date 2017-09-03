@@ -18,11 +18,11 @@ we check them in `ServiceWorkerRegistration.prototype`
 ​
 4. Now,we check if user is already subcribed,the following steps are taken
    1. when service worker becomes ready,all callback is recieved,it contains pushManager method
-       ```
+      ```
           navigator.serviceWorker.ready.then(function(serviceWorkerRegistration){
           console.log("serviceWorker registered");
            serviceWorkerRegistration.pushManager.getSubscription().then(function(subscription){
-    ```
+     ```
      
    2. The subscription tells if a user is subscribed or not.
     ```
@@ -48,7 +48,7 @@ we check them in `ServiceWorkerRegistration.prototype`
           updateSubscriptionOnServer(subscription);
          })
    
-      ```
+       ```
       here,the subscription callback reurns the a endpoint key which we store on our backend            db,and      it is used to send
         pushmessages.
 ​
